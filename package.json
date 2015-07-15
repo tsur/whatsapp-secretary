@@ -8,11 +8,13 @@
   "bin": "cli.js",
   "scripts": {
     "test": "tape test.js",
-    "build": "babel index.es6 > index.js"
+    "build": "babel --stage 0 cli.es6 > cli.js"
   },
   "dependencies": {
-    "lodash": "^3.10.0",
+    "jsonfile": "^2.2.1",
     "minimist": "^1.1.1",
+    "ramda": "^0.16.0",
+    "readline-sync": "^1.2.19",
     "whatsapi": "^1.3.3"
   },
   "devDependencies": {
