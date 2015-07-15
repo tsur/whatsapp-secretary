@@ -15,3 +15,5 @@ run(function* () {
   login(credentials, listen(config));
 
 })().catch(error => help());
+
+process.on('uncaughtException', error => help(error));

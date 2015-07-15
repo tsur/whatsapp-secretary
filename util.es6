@@ -4,12 +4,14 @@ import minimist from 'minimist';
 import R from 'ramda';
 import jsonfile from 'jsonfile';
 import path from 'path';
-import readline from 'readline';
+import readlineSync from 'readline-sync';
 
-export function help(logger, exit) {
+export function help(error, logger, exit) {
 
     logger = logger || console;
     exit = exit || true;
+
+    if(error) logger.error(error);
 
     logger.log(
 
@@ -62,17 +64,13 @@ export function getCredentials(){
 
   return new Promise(resolve => {
 
-    run(function* (){
+      const phone = readlineSync.question('Enter the phone (with country code): ');
 
-      const phone = yield readFromCLI('Enter your phone (with country code)');
+      const password = readlineSync.question('Enter the password: ', {hideEchoBack: true});
 
-      const password = yield readFromCLI('Enter your password', true);
-
-      const username = yield readFromCLI('Enter your username');
+      const username = readlineSync.question('Enter the screen username: ');
 
       resolve({phone, password, username, ccode: phone.substr(0,2)});
-
-    })();
 
   });
 

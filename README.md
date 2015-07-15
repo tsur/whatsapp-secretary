@@ -43,5 +43,5 @@ Now create a config.json file as below:
 And finally just run it:
 
 ```bash
-whatsapp-secretary -c config.json -u "user:password"
+whatsapp-secretary -c config.json
 ```
