@@ -18,25 +18,31 @@ Now create a config.json file as below:
 
 ```js
 {
-    "PHONE_NUMBER": {
+    "PHONE_NUMBER_1": {
 
-      "only": ["word1", "word2"],
-      "redirect": ["REDIRECT_TO_PHONE"]
-
-    },
-
-    "PHONE_NUMBER2": {
-
-      "ignore": ["word1", "word2"],
-      "autorespond": ["very busy man!, talk to me later"]
+      "only": ["word1", "word2"]
 
     },
 
-    "GROUP_ID1": {
+    "PHONE_NUMBER_N": {
 
       "ignore": ["word1", "word2"]
 
-    }
+    },
+
+    "GROUP_ID_1": {
+
+      "ignore": ["word1", "word2"]
+
+    },
+    
+    "GROUP_ID_N": {
+    
+      "only": ["word1", "word2"]
+    
+    },
+    
+    "*": "*"
 }
 ```
 

@@ -1,18 +1,19 @@
 {
   "name": "whatsapp-secretary",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Tell your whatsapp secretary to just let you know about what's important for you.",
   "author": "Zuri Pabon (@tsurshaddai) <zurisadai.pabon@gmail.com>",
   "license": "MIT",
-  "main": "index.js",
+  "main": "es5/cli.js",
   "bin": "cli.js",
   "scripts": {
     "test": "tape test.js",
-    "build": "babel --stage 0 cli.es6 > cli.js"
+    "build": "babel --stage 0 es6 -d es5"
   },
   "dependencies": {
     "jsonfile": "^2.2.1",
     "minimist": "^1.1.1",
+    "moment": "^2.10.3",
     "ramda": "^0.16.0",
     "readline-sync": "^1.2.19",
     "whatsapi": "^1.3.3"

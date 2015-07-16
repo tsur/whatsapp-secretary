@@ -1,5 +1,5 @@
 import whatsapi from 'whatsapi';
-
+import moment from 'moment';
 
 export function login(credentials, fn){
 
@@ -25,6 +25,9 @@ export function login(credentials, fn){
 
         });
     });
+
+    process.on('SIGINT', _ => wa.disconnect());
+    process.on('exit', _ => wa.disconnect());
 }
 
 export function listen(config){
@@ -39,7 +42,11 @@ function display(message){
 
 function print(message){
 
-    console.log(getText(message));
+    const date = getDate(message);
+    const text = getText(message);
+    const author = getAuthor(message);
+
+    console.log(`[${date}] ${author} says: ${text}`);
 }
 
 function getText(message){
@@ -47,26 +54,34 @@ function getText(message){
     return message.body;
 }
 
-function filter(message, config){
+function getDate(message){
 
-    return !message ? false : dispatch(getRules(getSender(message), config), message)
+    return moment(message.date).format('DD-MM, HH:mm:ss');
 }
 
-function getSender(message){
+function getAuthor(message){
 
-    return message.from;
+    return message.author || message.notify || getSenderPhone(message);
+}
+
+function getSenderPhone(message){
+
+    return (message.from || '').replace(/\@.*$/, '');
+}
+
+function filter(message, config){
+
+    return !message ? false : dispatch(getRules(getSenderPhone(message), config), message)
 }
 
 function getRules(from, config){
 
-    return config[from.replace(/\@.*$/, '')] || config['*'];
+    return config[from] || config['*'];
 }
 
 function dispatch(rules, message){
 
     if(!rules) return false;
-
-    console.log(rules, message);
 
     return message;
 
