@@ -2,4 +2,3 @@
 **/*.DS_store
 npm-debug.log
 .idea
-es6

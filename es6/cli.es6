@@ -2,9 +2,8 @@
 
 'use strict';
 
-
-import {run, help, getCredentials, getConfig} from './util.es6';
-import {login, listen} from './index.es6';
+import {run, help, getCredentials, getConfig} from './util';
+import {login, listen} from './index';
 
 run(function* () {
 
