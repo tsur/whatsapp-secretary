@@ -30,9 +30,14 @@ export function login(credentials, fn){
     process.on('exit', _ => wa.disconnect());
 }
 
-export function listen(config){
+export function listen(config, fn){
 
-    return message => display(filter(message, config));
+    return message => {
+
+        const filterMessage = filter(message, config);
+
+        isFunction(fn) ? fn(filterMessage) : display(filterMessage);
+    }
 }
 
 function display(message){
@@ -84,5 +89,12 @@ function dispatch(rules, message){
     if(!rules) return false;
 
     return message;
+
+}
+
+function isFunction(functionToCheck) {
+
+    var getType = {};
+    return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
 
 }

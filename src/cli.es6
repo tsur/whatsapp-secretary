@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 'use strict';
 
 import {run, help, getCredentials, getConfig} from './util';
