@@ -2,5 +2,4 @@
 
 'use strict';
 
-require('babel/register');
-require('./src/cli');
+require('./es5/cli');

@@ -1,6 +1,6 @@
 'use strict';
 
-var whatsappSecretary = require('./index.js');
+var whatsappSecretary = require('./es5/index.js');
 
 var config = {
 
