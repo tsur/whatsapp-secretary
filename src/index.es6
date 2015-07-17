@@ -1,5 +1,6 @@
 import whatsapi from 'whatsapi';
 import moment from 'moment';
+import R from 'ramda';
 
 export function login(credentials, fn){
 
@@ -74,7 +75,7 @@ function getSenderPhone(message){
     return (message.from || '').replace(/\@.*$/, '');
 }
 
-function filter(message, config){
+export function filter(message, config){
 
     return !message ? false : dispatch(getRules(getSenderPhone(message), config), message)
 }
@@ -88,13 +89,30 @@ function dispatch(rules, message){
 
     if(!rules) return false;
 
-    return message;
-
+    return R.any(x => x === true, [for (rule of R.keys(rules)) applyRule(rule)(rules[rule], getText(message))]) ? message : false;
 }
 
 function isFunction(functionToCheck) {
 
-    var getType = {};
+    const getType = {};
+
     return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
 
+}
+
+function applyRule(rule){
+
+    if(rule.toLowerCase() === 'only'){
+
+        return applyOnly;
+    }
+
+    return _ => false;
+}
+
+function applyOnly(filter, message){
+
+    if(R.is(String, filter)) return message.includes(filter);
+
+    if(R.isArrayLike(filter)) return R.any(x => message.includes(x), filter);
 }
