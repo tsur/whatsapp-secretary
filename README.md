@@ -71,3 +71,9 @@ file and then run it:
 $ npm run test
 ```
 
+Finally, if you want to locally test the npm package, just run:
+
+```bash
+$ npm run deploy
+```
+

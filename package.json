@@ -1,14 +1,15 @@
 {
   "name": "whatsapp-secretary",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "Tell your whatsapp secretary to just let you know about what's important for you.",
   "author": "Zuri Pabon (@tsurshaddai) <zurisadai.pabon@gmail.com>",
   "license": "MIT",
   "main": "dist/index.js",
-  "bin": "dist/cli.js",
+  "bin": "dist/bin.js",
   "scripts": {
     "test": "tape test/index.js",
-    "bundle": "babel --stage 0 --optional runtime src -d dist"
+    "bundle": "babel --stage 0 --optional runtime src -d dist",
+    "deploy": "npm pack && npm install --global whatsapp-secretary-$npm_package_version.tgz "
   },
   "engines": {
     "node": ">=0.10"
