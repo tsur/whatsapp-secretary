@@ -21,29 +21,37 @@ Now create a config.json file as below:
 
 ```js
 {
+    
     "PHONE_NUMBER_1": {
 
+      "//": "For phone number 1, just let me know about messages containing word1 or word2",
       "only": ["word1", "word2"]
 
     },
 
     "PHONE_NUMBER_N": {
-
+    
+      "//": "For phone number N, just let me know about messages not containing word1 or word2",
       "ignore": ["word1", "word2"]
 
     },
 
     "GROUP_ID_1": {
 
-      "ignore": ["word1", "word2"]
+      "//": "Same as for phone number 1, but for a group",
+      "only": ["word1", "word2"]
 
     },
     
     "GROUP_ID_N": {
-    
-      "only": ["word1", "word2"]
+      
+      "//": "Same as for phone number N, but for a group",
+      "ignore": ["word1", "word2"]
     
     },
+    
+    "//": "For the rest of phones and groups, let me know everything. Otherwise, remove line below and no message 
+    will be reported back from the rest of phones and groups"
     
     "*": "*"
 }

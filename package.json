@@ -9,7 +9,7 @@
   "scripts": {
     "test": "tape test/index.js",
     "bundle": "babel --stage 0 --optional runtime src -d dist",
-    "deploy": "npm pack && npm install --global whatsapp-secretary-$npm_package_version.tgz "
+    "deploy": "npm pack && npm install --global whatsapp-secretary-$npm_package_version.tgz"
   },
   "engines": {
     "node": ">=0.10"
