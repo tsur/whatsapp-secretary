@@ -1,0 +1,17 @@
+{
+    "whitelist": "*",
+    "blacklist": [],
+
+    "34634831935": {
+
+      "only": ["important", "urgent"]
+
+    },
+
+    "447876212932-1427302269": {
+
+      "only": ["important", "urgent*"]
+    },
+
+    "*": "*"
+}
