@@ -41,6 +41,11 @@ export function listen(config, fn){
     }
 }
 
+export function filter(message, config){
+
+    return !message ? false : dispatch(getRules(getSenderPhone(message), config), message)
+}
+
 function display(message){
 
     if(message) print(message);
@@ -75,11 +80,6 @@ function getSenderPhone(message){
     return (message.from || '').replace(/\@.*$/, '');
 }
 
-export function filter(message, config){
-
-    return !message ? false : dispatch(getRules(getSenderPhone(message), config), message)
-}
-
 function getRules(from, config){
 
     return config[from] || (config['*'] === '*' ? {'*':'*'} : config['*']);
@@ -89,7 +89,9 @@ function dispatch(rules, message){
 
     if(!rules) return false;
 
-    return R.any(x => x === true, [for (rule of R.keys(rules)) applyRule(rule)(rules[rule], getText(message))]) ? message : false;
+    const rulesResult = [for (rule of R.keys(rules)) applyRule(rule)(rules[rule], getText(message))];
+
+    return R.any(x => x === true, rulesResult) ? message : false;
 }
 
 function isFunction(functionToCheck) {
@@ -122,9 +124,9 @@ function applyRule(rule){
 
 function applyOnly(filter, message){
 
-    if(R.is(String, filter)) return message.includes(filter);
+    if(R.is(String, filter)) return R.test(new RegExp(filter), message);
 
-    if(R.isArrayLike(filter)) return R.any(x => message.includes(x), filter);
+    if(R.isArrayLike(filter)) return R.any(x => R.test(new RegExp(x), message), filter);
 }
 
 function applyIgnore(filter, message){

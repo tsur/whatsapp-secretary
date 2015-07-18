@@ -57,7 +57,7 @@ function getConfig() {
 
     var configPath = cli.config || cli.c || cli._[0];
 
-    var config = _path2['default'].isAbsolute(configPath) ? configPath : _path2['default'].join(process.cwd(), configPath);
+    var config = _path2['default'].normalize(_path2['default'].isAbsolute(configPath) ? configPath : _path2['default'].join(process.cwd(), configPath));
 
     _jsonfile2['default'].readFile(config, function (error, data) {
 

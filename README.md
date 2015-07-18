@@ -9,7 +9,16 @@ Note: This is very much a work in progress. It may not work as expected.
 
 # Why
 
-As a developer, I'm working too many hours with a text editor and several terminal sessions. In Europe, but specially in Spain, whatsapp is a very popular application, a must have, basically because all of your friends and relatives have it. It becomes very annoying to be interrupted every minute for some friend who has to tell me something not important and do not even say anything about all those groups chats bubbling up whatsapp notifications each 10 seconds just to end up reading nonsenses. It may be better to just disable notifications and you are done, yeah, but then you have no way to know when something you are really interesting on has been said, and even more, a context switch is required in the mind from your keyboard to the phone similar to what happens when using keyboard and mice, so with whatsapp-secretary you just need to have a look at your terminal session and do not need to be enabling/disabling notifications on your phone since whenever you start using whatsapp-secreatary, notifications will stop coming in your phone and will start coming in once you stop whatsapp-secretary.
+As a developer, I'm working too many hours with a text editor and several terminal sessions. In Europe, but specially
+ in Spain, whatsapp is a very popular application, a must have, basically because all of your friends and relatives 
+ have it. It becomes very annoying to be interrupted every minute for some friend who has to tell you something not 
+ actually important and do not even say anything about all those group chats conversation popping up whatsapp 
+ notifications like mushrooms every 10 seconds to just end up reading nonsenses. It may be better to just disable 
+ notifications on your phone and you are done, yeah, but then you have no way to know when something you are really 
+ interesting on has been said, and it also requires a mind context switch from your keyboard to the phone similar to 
+ what happens when using keyboard and mice, so with whatsapp-secretary you just need to have a look at your terminal 
+ session and do not need to be looking at or enabling/disabling notifications on your phone since whenever you start 
+ using whatsapp-secreatary, notifications will stop coming in your phone and will start coming in once you stop whatsapp-secretary.
 
 # Setting up
 
@@ -79,7 +88,7 @@ file and then run it:
 $ npm run test
 ```
 
-Finally, if you want to locally test the npm package, just run:
+Finally, if you want to locally test the npm package before publishing it into your private npm registry, just run:
 
 ```bash
 $ npm run deploy
