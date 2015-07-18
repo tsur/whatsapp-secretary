@@ -46,7 +46,7 @@ export function getConfig(){
 
     const configPath = cli.config || cli.c || cli._[0];
 
-    const config = path.isAbsolute(configPath) ? configPath : path.join(process.cwd(), configPath);
+    const config = path.normalize(path.isAbsolute(configPath) ? configPath : path.join(process.cwd(), configPath));
 
     jsonfile.readFile(config, (error, data) => {
 

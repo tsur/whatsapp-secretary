@@ -82,7 +82,7 @@ export function filter(message, config){
 
 function getRules(from, config){
 
-    return config[from] || config['*'];
+    return config[from] || (config['*'] === '*' ? {'*':'*'} : config['*']);
 }
 
 function dispatch(rules, message){
@@ -107,6 +107,16 @@ function applyRule(rule){
         return applyOnly;
     }
 
+    if(rule.toLowerCase() === 'ignore'){
+
+        return applyIgnore;
+    }
+
+    if(rule.toLowerCase() === '*'){
+
+        return _ => true;
+    }
+
     return _ => false;
 }
 
@@ -115,4 +125,9 @@ function applyOnly(filter, message){
     if(R.is(String, filter)) return message.includes(filter);
 
     if(R.isArrayLike(filter)) return R.any(x => message.includes(x), filter);
+}
+
+function applyIgnore(filter, message){
+
+    return !applyOnly(filter, message);
 }
